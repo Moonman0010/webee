@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { join } from 'path';
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class MenuItem {
@@ -16,4 +17,7 @@ export class MenuItem {
 
   @Column({ type: 'datetime' })
   createdAt: string;
+
+  @ManyToMany(() =>MenuItem, (menu) =>{menu.parentId})
+  children?: MenuItem[];
 }
